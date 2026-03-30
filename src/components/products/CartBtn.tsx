@@ -1,38 +1,33 @@
-import { useContext } from "react";
-import { CartContext } from "../../providers/CartContext";
+import { useCart } from "../../providers/CartContext";
 import type { ProductData } from "../../types";
 
 interface CartBtnProps {
   isInCart: boolean;
   product: ProductData;
-  toggleProductInCart?: (id: number) => void;
   mode?: "remove" | "toggle";
 }
-const CartBtn = ({
-  toggleProductInCart,
-  product,
-  isInCart,
-  mode = "toggle",
-}: CartBtnProps) => {
-  const context = useContext(CartContext);
+const CartBtn = ({ product, isInCart, mode = "toggle" }: CartBtnProps) => {
+  const { toggleCartItem, removeFromCart } = useCart();
 
-  const handleCartBtn = (product: ProductData) => {
-    toggleProductInCart?.(product.id);
+  const handleCartBtn = () => {
     switch (mode) {
       case "toggle":
-        context?.toggleCartItem({
+        toggleCartItem({
           ...product,
-          isInCart: !product.isInCart,
-          quantity: 0,
+          quantity: 1,
         });
         break;
       case "remove":
-        context?.removeFromCart(product.id);
+        removeFromCart(product.id);
     }
   };
 
   return (
-    <button onClick={() => handleCartBtn(product)} className="cursor-pointer">
+    <button
+      onClick={handleCartBtn}
+      className="cursor-pointer"
+      aria-label={mode === "remove" ? "Remove from cart" : "Toggle cart item"}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill={isInCart ? "#ff8f00" : "none"}

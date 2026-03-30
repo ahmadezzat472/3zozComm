@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 import type { CartItem } from "../types";
 
 type CartContextType = {
@@ -29,13 +29,13 @@ const CartProvider = ({ children }: CartProviderProps) => {
   };
 
   const addToCart = (newItem: CartItem) => {
-    if (isItemExist(newItem.id) == -1) {
+    if (isItemExist(newItem.id) === -1) {
       setCartItems((prev) => [...prev, newItem]);
     }
   };
 
   const toggleCartItem = (newItem: CartItem) => {
-    if (isItemExist(newItem.id) == -1) {
+    if (isItemExist(newItem.id) === -1) {
       addToCart(newItem);
     } else {
       removeFromCart(newItem.id);
@@ -49,8 +49,6 @@ const CartProvider = ({ children }: CartProviderProps) => {
   const getCartLength = () => {
     return cartItems.length;
   };
-
-  console.log(cartItems);
 
   return (
     <CartContext
@@ -69,3 +67,12 @@ const CartProvider = ({ children }: CartProviderProps) => {
 };
 
 export default CartProvider;
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const useCart = (): CartContextType => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCart must be used within CartProvider");
+  }
+  return context;
+};

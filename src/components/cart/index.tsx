@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import CartItems from "./CartItems";
-import { CartContext } from "../../providers/CartContext";
+import { useCart } from "../../providers/CartContext";
 
 const Cart = () => {
-  const context = useContext(CartContext);
+  const { cartItems, updateCartItems } = useCart();
 
   const updateQuantity = (id: number, value: number) => {
-    const newProducts = [...(context?.cartItems || [])];
+    const newProducts = [...cartItems];
     const productIndex = newProducts.findIndex((pro) => pro.id === id);
 
     if (productIndex === -1) return;
@@ -17,7 +16,7 @@ const Cart = () => {
       quantity: targetProduct.quantity + value,
     };
 
-    context?.updateCartItems(newProducts);
+    updateCartItems(newProducts);
   };
 
   const incrementQuantity = (id: number) => {
@@ -30,7 +29,7 @@ const Cart = () => {
 
   return (
     <div className="overflow-x-auto custom-container py-10">
-      {context?.cartItems.length ? (
+      {cartItems.length ? (
         <table className="table">
           {/* head */}
           <thead>
@@ -45,7 +44,7 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            {context.cartItems.map((product) => (
+            {cartItems.map((product) => (
               <CartItems
                 key={product.id}
                 product={product}

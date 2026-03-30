@@ -12,8 +12,7 @@ const CartItems = ({
   incrementQuantity,
   decrementQuantity,
 }: CartItemsProps) => {
-  const { title, id, stock, img, isInCart, price, description, quantity } =
-    product;
+  const { title, id, stock, img, price, description, quantity } = product;
 
   return (
     <tr className="text-center hover:bg-primary/10">
@@ -22,19 +21,15 @@ const CartItems = ({
         <div className="flex items-center justify-center gap-3">
           <div className="avatar">
             <div className="mask mask-squircle h-12 w-12">
-              <img src={img[0]} alt="Avatar Tailwind CSS Component" />
+              <img src={img[0]} alt={title} />
             </div>
-          </div>
-          <div>
-            <div className="font-bold">Hart Hagerty</div>
-            <div className="text-sm opacity-50">United States</div>
           </div>
         </div>
       </td>
       <td>{title}</td>
       <td>{description}</td>
       <th>
-        {stock < 0 ? (
+        {stock <= 0 ? (
           "Out of stock"
         ) : (
           <div className="flex items-center justify-center gap-2">
@@ -85,7 +80,7 @@ const CartItems = ({
       <th>{price}</th>
 
       <th>
-        <CartBtn mode="remove" product={product} isInCart={isInCart} />
+        <CartBtn mode="remove" product={product} isInCart />
       </th>
     </tr>
   );

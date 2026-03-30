@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { NavLink } from "react-router";
-import { CartContext } from "../providers/CartContext";
+import { useCart } from "../providers/CartContext";
 
 const LINKS = [
   { name: "Home", link: "/" },
@@ -9,7 +8,7 @@ const LINKS = [
 ];
 
 const Header = () => {
-  const context = useContext(CartContext);
+  const { getCartLength } = useCart();
 
   return (
     <nav className="bg-base-100 shadow-sm">
@@ -22,7 +21,7 @@ const Header = () => {
             <li key={idx}>
               <NavLink
                 className={({ isActive }) =>
-                  `hover:text-primary inline-block capitalize px-2 py-1.5 transition-all duration-300} ${
+                  `hover:text-primary inline-block capitalize px-2 py-1.5 transition-all duration-300 ${
                     isActive
                       ? "text-primary font-bold bg-primary/20 rounded-xl"
                       : ""
@@ -43,9 +42,9 @@ const Header = () => {
             }`
           }
         >
-          {context && context?.getCartLength() > 0 && (
+          {getCartLength() > 0 && (
             <span className="absolute -top-2 -right-1 size-5 rounded-full text-black text-xs font-bold bg-primary flex items-center justify-center">
-              {context?.getCartLength()}
+              {getCartLength()}
             </span>
           )}
           <svg

@@ -5,6 +5,5 @@ export interface ProductData {
   price: number;
   stock: number;
   img: string[];
-  isInCart: boolean;
   categoryId: number;
 }

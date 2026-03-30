@@ -11,11 +11,21 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
+      setError(null);
       const res = await fetch("http://localhost:3000/products");
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch products");
+      }
+
       const data = await res.json();
       setProducts(data);
     } catch (err) {
-      setError(err as string);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Something went wrong while fetching products");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -26,21 +36,10 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  //* Handlers */
-  const toggleProductInCart = (id: number) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === id
-          ? { ...product, isInCart: !product.isInCart }
-          : product,
-      ),
-    );
-  };
-
   //* Renders */
   if (isLoading) {
     return (
-      <section className="custom-container py-10">
+      <section className="custom-container flex justify-center items-center py-10">
         <span className="loading loading-spinner"></span>
       </section>
     );
@@ -73,11 +72,7 @@ const Products = () => {
     <section className="custom-container py-10">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
         {products.map((product) => (
-          <ProductsCard
-            key={product.id}
-            product={product}
-            toggleProductInCart={toggleProductInCart}
-          />
+          <ProductsCard key={product.id} product={product} />
         ))}
       </div>
     </section>
