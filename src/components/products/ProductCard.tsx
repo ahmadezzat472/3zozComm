@@ -9,12 +9,13 @@ const ProductsCard = ({ product }: ProductsCardProps) => {
   const { cartItems } = useCart();
   const { id, img, price, title, description } = product;
   const isInCart = cartItems.some((item) => item.id === id);
+  console.log(product);
 
   return (
     <div className="card card-sm bg-base-100 max-w-60 shadow">
       <figure className="h-60 w-full overflow-hidden rounded-xl relative">
         <img
-          src={img[0]}
+          src={img}
           alt={`${title} preview`}
           className="w-full h-full object-cover transition duration-300"
         />

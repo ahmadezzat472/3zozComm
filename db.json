@@ -11,7 +11,6 @@
         "/images/products/img-2.jpg",
         "/images/products/img-3.jpg"
       ],
-      "isInCart": false,
       "categoryId": 1
     },
     {
@@ -25,7 +24,6 @@
         "/images/products/img-5.jpg",
         "/images/products/img-6.jpg"
       ],
-      "isInCart": false,
       "categoryId": 2
     },
     {
@@ -39,7 +37,6 @@
         "/images/products/img-8.jpg",
         "/images/products/img-9.jpg"
       ],
-      "isInCart": false,
       "categoryId": 3
     },
     {
@@ -53,7 +50,6 @@
         "/images/products/img-1.jpg",
         "/images/products/img-2.jpg"
       ],
-      "isInCart": false,
       "categoryId": 2
     },
     {
@@ -67,7 +63,6 @@
         "/images/products/img-4.jpg",
         "/images/products/img-5.jpg"
       ],
-      "isInCart": false,
       "categoryId": 2
     }
   ],

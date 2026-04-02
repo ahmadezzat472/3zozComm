@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ProductData } from "../../types";
 import ProductsCard from "./ProductCard";
+import { supabase } from "../../types/utils/supabase";
 
 const Products = () => {
   const [products, setProducts] = useState<ProductData[]>([]);
@@ -8,18 +9,38 @@ const Products = () => {
   const [error, setError] = useState<string | null>(null);
 
   //* Apis Handler */
+  // const fetchProducts = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     setError(null);
+  //     const res = await fetch("http://localhost:3000/products");
+
+  //     if (!res.ok) {
+  //       throw new Error("Failed to fetch products");
+  //     }
+
+  //     const data = await res.json();
+  //     setProducts(data);
+  //   } catch (err) {
+  //     if (err instanceof Error) {
+  //       setError(err.message);
+  //     } else {
+  //       setError("Something went wrong while fetching products");
+  //     }
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
       setError(null);
-      const res = await fetch("http://localhost:3000/products");
+      const { data: todos } = await supabase.from("products").select();
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch products");
+      if (todos) {
+        setProducts(todos);
       }
-
-      const data = await res.json();
-      setProducts(data);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
