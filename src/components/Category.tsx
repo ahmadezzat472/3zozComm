@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import type { CategoryData } from "../types";
+import { supabase } from "../types/utils/supabase";
 
 const Category = () => {
   const [categories, setCategories] = useState<CategoryData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = Number(searchParams.get("categoryId"));
 
+  //* Handler */
   const handleActiveCategory = (categoryId: number) => {
     setSearchParams((prev) => {
       const nextParams = new URLSearchParams(prev);
@@ -17,16 +20,35 @@ const Category = () => {
     });
   };
 
+  //* Apis Handler */
+  // const getCategories = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     const response = await fetch("http://localhost:3000/category");
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch products");
+  //     }
+  //     const data = await response.json();
+
+  //     setCategories(data);
+  //   } catch (err) {
+  //     if (err instanceof Error) {
+  //       setError(err.message);
+  //     } else {
+  //       setError("Something went wrong while fetching products");
+  //     }
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const getCategories = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:3000/category");
-      if (!response.ok) {
-        throw new Error("Failed to fetch products");
-      }
-      const data = await response.json();
+      const { data: todos } = await supabase.from("category").select();
 
-      setCategories(data);
+      if (todos) {
+        setCategories(todos);
+      }
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -74,10 +96,12 @@ const Category = () => {
 
   return (
     <ul className="menu menu-vertical md:menu-horizontal bg-base-100 rounded-box">
-      {categories.map((cat) => (
+      {[{ title: "All", id: 0 }, ...categories].map((cat) => (
         <li key={cat.id}>
           <a
-            className={activeCategory === cat.id ? "bg-primary/60 font-bold" : ""}
+            className={
+              activeCategory === cat.id ? "bg-primary/60 font-bold" : ""
+            }
             onClick={() => handleActiveCategory(cat.id)}
           >
             {cat.title}

@@ -9,7 +9,6 @@ const ProductsCard = ({ product }: ProductsCardProps) => {
   const { cartItems } = useCart();
   const { id, img, price, title, description } = product;
   const isInCart = cartItems.some((item) => item.id === id);
-  console.log(product);
 
   return (
     <div className="card card-sm bg-base-100 max-w-60 shadow">
