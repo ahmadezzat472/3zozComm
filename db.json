@@ -7,9 +7,9 @@
       "price": 1200000,
       "stock": 3,
       "img": [
-        "https://images.unsplash.com/photo-1511919884226-fd3cad34687c",
-        "https://images.unsplash.com/photo-1549924231-f129b911e442",
-        "https://images.unsplash.com/photo-1502877338535-766e1452684a"
+        "/images/products/img-1.jpg",
+        "/images/products/img-2.jpg",
+        "/images/products/img-3.jpg"
       ],
       "isInCart": false,
       "categoryId": 1
@@ -21,9 +21,9 @@
       "price": 80000,
       "stock": 5,
       "img": [
-        "https://images.unsplash.com/photo-1555215695-3004980ad54c",
-        "https://images.unsplash.com/photo-1607853554439-0069ec0f29b6",
-        "https://images.unsplash.com/photo-1617654112368-307921291f42"
+        "/images/products/img-4.jpg",
+        "/images/products/img-5.jpg",
+        "/images/products/img-6.jpg"
       ],
       "isInCart": false,
       "categoryId": 2
@@ -35,9 +35,9 @@
       "price": 55000,
       "stock": 4,
       "img": [
-        "https://images.unsplash.com/photo-1619767886558-efdc259cde1a",
-        "https://images.unsplash.com/photo-1597007030739-6d2e9d7c6f0d",
-        "https://images.unsplash.com/photo-1626668893632-6f3a4466d22f"
+        "/images/products/img-7.jpg",
+        "/images/products/img-8.jpg",
+        "/images/products/img-9.jpg"
       ],
       "isInCart": false,
       "categoryId": 3
@@ -49,9 +49,9 @@
       "price": 150000,
       "stock": 2,
       "img": [
-        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b",
-        "https://images.unsplash.com/photo-1583121274602-3e2820c69888",
-        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6"
+        "/images/products/img-10.jpg",
+        "/images/products/img-1.jpg",
+        "/images/products/img-2.jpg"
       ],
       "isInCart": false,
       "categoryId": 2
@@ -63,12 +63,27 @@
       "price": 170000,
       "stock": 3,
       "img": [
-        "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-        "https://images.unsplash.com/photo-1504215680853-026ed2a45def",
-        "https://images.unsplash.com/photo-1493238792000-8113da705763"
+        "/images/products/img-3.jpg",
+        "/images/products/img-4.jpg",
+        "/images/products/img-5.jpg"
       ],
       "isInCart": false,
       "categoryId": 2
+    }
+  ],
+
+  "category": [
+    {
+      "id": 1,
+      "title": "Supercars"
+    },
+    {
+      "id": 2,
+      "title": "Luxury Sports"
+    },
+    {
+      "id": 3,
+      "title": "Japanese Sports"
     }
   ]
 }

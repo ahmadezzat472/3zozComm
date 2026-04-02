@@ -12,22 +12,20 @@ const ProductsCard = ({ product }: ProductsCardProps) => {
 
   return (
     <div className="card card-sm bg-base-100 max-w-60 shadow">
-      <figure className="hover-gallery">
-        {img.map((src, idx) => (
-          <img
-            key={`${src}-${idx}`}
-            src={src}
-            alt={`${title} preview ${idx + 1}`}
-          />
-        ))}
+      <figure className="h-60 w-full overflow-hidden rounded-xl relative">
+        <img
+          src={img[0]}
+          alt={`${title} preview`}
+          className="w-full h-full object-cover transition duration-300"
+        />
       </figure>
       <div className="card-body">
-        <h2 className="card-title flex justify-between">
-          {title}
-          <span className="font-normal">${price}</span>
-        </h2>
+        <h2 className="card-title">{title}</h2>
         <p>{description}</p>
-        <CartBtn isInCart={isInCart} product={product} />
+        <div className="flex justify-between mt-5">
+          <CartBtn isInCart={isInCart} product={product} />
+          <span className="font-normal">${price}</span>
+        </div>
       </div>
     </div>
   );
