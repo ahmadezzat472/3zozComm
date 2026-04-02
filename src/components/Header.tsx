@@ -4,7 +4,7 @@ import { useCart } from "../providers/CartContext";
 const LINKS = [
   { name: "Home", link: "/" },
   { name: "About", link: "/about" },
-  // { name: "Products", link: "/products" },
+  { name: "Admin", link: "/admin-crud" },
 ];
 
 const Header = () => {

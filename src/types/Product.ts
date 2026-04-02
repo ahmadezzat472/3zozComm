@@ -6,4 +6,5 @@ export interface ProductData {
   stock: number;
   img: string;
   categoryId: number;
+  created_at?: string;
 }

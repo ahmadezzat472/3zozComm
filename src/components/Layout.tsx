@@ -5,7 +5,9 @@ export default function Layout() {
   return (
     <>
       <Header />
-      <Outlet />
+      <main className="min-h-screen relative">
+        <Outlet />
+      </main>
     </>
   );
 }
